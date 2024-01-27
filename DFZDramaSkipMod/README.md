@@ -1,10 +1,11 @@
 # DFZ Drama Skip Mod
 ドラゴンファングZにてゆりかご/深淵内のフレイ、アポロン/アルテミス、名も無き竜の王が特殊能力を発動した際の会話シーンをスキップするModです。
 
-## 導入背景
+## 当Modを導入する目的
 - 上記4名の会話シーンはゲーム起動後に一度見ると以降発生しない
 - ただし、ゲームを終了すると再度発生する
 - そのため極限までRTAのタイムを短縮したい場合、毎回一度上記ボスを撃破してからRTAを開始する必要があり、手間がかかる
+- 上記の手間を省くために使用する
 
 ## 使い方
 1. MelonLoaderのインストーラーを[ダウンロードする](https://github.com/LavaGang/MelonLoader.Installer/releases/latest/download/MelonLoader.Installer.exe)
