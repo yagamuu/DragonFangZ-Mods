@@ -11,14 +11,16 @@ namespace DFZQuickRestartMod
     {
         public override void OnUpdate()
         {
-            GameScene gameScene = GameObject.Find("GameScene").GetComponent<GameScene>();
-            if (Input.GetKeyDown(KeyCode.F5) && gameScene.Panel.CanControl()) {
-                StateSerializer.DeleteState(0);
-                Browser.GoTo(string.Format("Game?dungeon={0}", gameScene.CurrentStartDungeonParam.DungeonId), new PageOption
-                {
-                    Fade = true,
-                    ClearHistory = true
-                });
+            if (Input.GetKeyDown(KeyCode.F5)) {
+                GameScene gameScene = GameObject.Find("GameScene").GetComponent<GameScene>();
+                if (gameScene.Panel.CanControl()) {
+                    StateSerializer.DeleteState(0);
+                    Browser.GoTo(string.Format("Game?dungeon={0}", gameScene.CurrentStartDungeonParam.DungeonId), new PageOption
+                    {
+                        Fade = true,
+                        ClearHistory = true
+                    });
+                }
             }
         }
     }
