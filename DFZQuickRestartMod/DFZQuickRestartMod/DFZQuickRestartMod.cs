@@ -9,7 +9,7 @@ namespace DFZQuickRestartMod
 {
     public class DFZQuickRestartMod : MelonMod
     {
-        public override void OnUpdate()
+        public override void OnLateUpdate()
         {
             if (Input.GetKeyDown(KeyCode.F5)) {
                 GameScene gameScene = GameObject.Find("GameScene").GetComponent<GameScene>();
