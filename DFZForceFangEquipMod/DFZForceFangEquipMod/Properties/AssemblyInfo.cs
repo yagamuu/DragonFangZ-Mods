@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using MelonLoader;
-[assembly: MelonInfo(typeof(DFZForceFangEquipMod.DFZForceFangEquipMod), "DragonFangZ Force Fang Equipment Mod", "1.0.0", "yagamuu")]
+[assembly: MelonInfo(typeof(DFZForceFangEquipMod.Main), "DragonFangZ Force Fang Equipment Mod", "1.0.0", "yagamuu")]
 [assembly: MelonGame("Toydea", "DragonFangZ")]
 
 // アセンブリに関する一般情報は以下を通して制御されます
