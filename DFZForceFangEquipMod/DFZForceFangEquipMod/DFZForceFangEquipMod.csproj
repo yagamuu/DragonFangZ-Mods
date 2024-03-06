@@ -43,6 +43,10 @@
     <Reference Include="MelonLoader">
       <HintPath>E:\SteamLibrary\steamapps\common\DragonFangZ\MelonLoader\MelonLoader.dll</HintPath>
     </Reference>
+    <Reference Include="RSG.Promise, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\DragonFangZ\dfz_Data\Managed\RSG.Promise.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -60,8 +64,13 @@
       <HintPath>E:\SteamLibrary\steamapps\common\DragonFangZ\dfz_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\SteamLibrary\steamapps\common\DragonFangZ\dfz_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FangDropRate.cs" />
     <Compile Include="GUI.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="FangManagement.cs" />

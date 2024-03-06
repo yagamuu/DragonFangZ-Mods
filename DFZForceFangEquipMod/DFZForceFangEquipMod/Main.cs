@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Game.FieldAction;
 using static MelonLoader.MelonLogger;
+using Dfz.Ui;
+using GameLog;
+using Game.Specials;
 
 namespace DFZForceFangEquipMod
 {
@@ -38,7 +41,34 @@ namespace DFZForceFangEquipMod
                 FangManagement.executeOnDoTurnEndPostfix();
             }
         }
-        
+
+        [HarmonyPatch(typeof(GameLog.EquipFangRequest), "Process")]
+        public static class PatchForEquipFangRequestProcess
+        {
+            public static bool Prefix(EquipFangRequest __instance)
+            {
+                return FangManagement.executeOnEquipFangRequestProcessPrefix(__instance.ItemId);
+            }
+        }
+
+        [HarmonyPatch(typeof(SetStatus), "Execute")]
+        public static class PatchForSetStatusExecute
+        {
+            public static bool Prefix(SetStatus __instance, SpecialParam p)
+            {
+                return FangDropRate.executeOnSetStatusExecutePrefix(__instance, p);
+            }
+        }
+
+        [HarmonyPatch(typeof(CharacterAction), "KillCharacter")]
+        public static class PatchForCharacterActionKillCharacter
+        {
+            public static bool Prefix(CharacterAction.AddDamageOption opt)
+            {
+                return FangDropRate.executeOnPatchForCharacterActionKillCharacterPrefix(opt);
+            }
+        }
+
         public override void OnInitializeMelon()
         {
             GUI.init();

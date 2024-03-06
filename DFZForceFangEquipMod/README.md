@@ -14,6 +14,8 @@
 5. ゲームフォルダ内のModsフォルダに[`DFZForceFangEquipMod.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZForceFangEquipMod/DFZForceFangEquipMod.dll)を入れる
 
 ## 変更ログ
+- v1.0.2
+  - 各種ファングドロップ率操作の有効化無効化オプションを実装(薬、竜脈、戦乙女など)
 - v1.0.1
   - 毒のダメージでモンスターを撃破しファングを落とした際に強制装備が発生しない不具合修正
   - ファングの装着コマンド削除を一時的に廃止(別の方法で実現する予定)

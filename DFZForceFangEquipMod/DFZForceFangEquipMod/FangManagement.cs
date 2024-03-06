@@ -3,6 +3,7 @@ using Game;
 using GameLog;
 using UnityEngine;
 using System.Collections.Generic;
+using Dfz.Ui;
 
 namespace DFZForceFangEquipMod
 {
@@ -28,6 +29,19 @@ namespace DFZForceFangEquipMod
         public static void executeOnDoTurnEndPostfix()
         {
             equipFang();
+        }
+
+        public static bool executeOnEquipFangRequestProcessPrefix(int itemId)
+        {
+            if (!Settings.enableEquipFangAction.Value)
+            {
+                GameScene gameScene = GameObject.Find("GameScene").GetComponent<GameScene>();
+                Field field = gameScene.Field;
+                Item item = field.FindItem(itemId);
+                gameScene.ShowMessage(Marker.T("{0}を装着することはできない！").Format(new object[] { item.DisplayName(field, false) }));
+                return false;
+            }
+            return true;
         }
 
         public static void equipFang()
