@@ -15,7 +15,7 @@
 
 6. 希望に応じてオプションを変更してください
     1. ゲームフォルダ内の`UserData\MelonPreferences.cfg`をテキストエディタで開き書き換えることで変更可能です。
-    2. よくわからない人は[`MelonPrefManager.Mono.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZForceFangEquipMod/MelonPrefManager.Mono.dll)をModsフォルダに入れてF5キーを押して設定してください(From [MelonPreferencesManager](https://github.com/kafeijao/MelonPreferencesManager))。
+    2. よくわからない人は[`MelonPrefManager.Mono.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZForceFangEquipMod/MelonPrefManager.Mono.dll)と[`UniverseLib.Mono.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZForceFangEquipMod/UniverseLib.Mono.dll)をModsフォルダに入れてF5キーを押して設定してください(From [MelonPreferencesManager](https://github.com/kafeijao/MelonPreferencesManager))。
 
 ### オプションの指定例
 ```
