@@ -86,5 +86,14 @@ namespace DFZBugrfixMod
 				return false;
 			}
 		}
+
+		[HarmonyPatch(typeof(GameSetting), "GetVersionText")]
+		public static class OverwriteVersionText
+		{
+			public static void Postfix(ref string __result)
+			{
+				__result += "+Bugfix";
+			}
+		}
 	}
 }
