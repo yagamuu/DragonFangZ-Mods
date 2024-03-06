@@ -16,4 +16,4 @@
 
 4. 一番下の`INSTALL`ボタンを押す
 
-5. ゲームフォルダ内のModsフォルダに[`DFZBugfix.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZBugfix/DFZBugfixMod.dll)を入れる
+5. ゲームフォルダ内のModsフォルダに[`DFZBugfixMod.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZBugfixMod/DFZBugfixMod.dll)を入れる
