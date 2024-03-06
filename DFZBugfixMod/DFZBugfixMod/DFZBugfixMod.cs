@@ -63,7 +63,6 @@ namespace DFZBugrfixMod
 				for (int i = 0; i < len; i++)
 				{
 					var soul = souls[i];
-					bool invoke = false;
 					if (soul.Type == cond && c.IsSoulActive(f, soul))
 					{
 						if (opt.Certain)
@@ -80,7 +79,7 @@ namespace DFZBugrfixMod
 						}
 						else
 						{
-							invoke = true;
+							return false;
 						}
 					}
 				}
