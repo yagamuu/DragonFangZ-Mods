@@ -35,8 +35,10 @@ namespace DFZForceFangEquipMod
             Item nextFang = player.PlayerInfo.Fangs[FangManagement.nowFangIndex % 3];
 
             string displayFangName = nextFang == null ? "なし" : nextFang.DisplayName(gameScene.Field);
-            drawText = string.Format("DFZ Force Equipment Fang Mod v1.0.0\n次回のファング装備先:{0}({1})", new object[]
+            drawText = string.Format("{0} v{1}\n次回のファング装備先:{2}({3})", new object[]
                 {
+                    DFZForceFangEquipMod.BuildInfo.Name,
+                    DFZForceFangEquipMod.BuildInfo.Version,
                     FangManagement.nowFangIndex % 3 + 1,
                     displayFangName
                 }

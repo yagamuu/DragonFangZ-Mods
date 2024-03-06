@@ -13,7 +13,28 @@
 
 5. ゲームフォルダ内のModsフォルダに[`DFZForceFangEquipMod.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZForceFangEquipMod/DFZForceFangEquipMod.dll)を入れる
 
+6. 希望に応じてオプションを変更してください
+    1. ゲームフォルダ内の`UserData\MelonPreferences.cfg`をテキストエディタで開き書き換えることで変更可能です。
+    2. よくわからない人は[`MelonPrefManager.Mono.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZForceFangEquipMod/MelonPrefManager.Mono.dll)をModsフォルダに入れてF5キーを押して設定してください(From [MelonPreferencesManager](https://github.com/kafeijao/MelonPreferencesManager))。
+
+### オプションの指定例
+```
+[dfzForceFangEquipMod]
+# ファングの装着コマンドを有効化するか(false:しない、true:する)
+enableEquipFangAction = false
+# 薬によるファングドロップ確定化を無効化する(false:しない、true:する)
+disableFang100FromItem = true
+# オブジェクトによるファングドロップ確定化を無効化する(false:しない、true:する)
+disableFang100FromObj = false
+# 特定攻撃(戦乙女サクリなど)によるファングドロップ率増加を無効化する(false:しない、true:する)
+disableFangDropRate = false
+# 強制装備を無効化するファングを指定(複数指定する場合は","で区切ってください)
+disableFangDropMonsters = "キョンシーロック,ケルベロス"
+```
+
 ## 変更ログ
+- v1.0.3
+  - 強制装備を無視するファングを指定するオプションを実装(指定した名前を含むファングを全て無視します、複数指定する場合は","で区切ってください 例: `キョンシーロック,ケルベロス,爆轟ガエル`)
 - v1.0.2
   - 各種ファングドロップ率操作の有効化無効化オプションを実装(薬、竜脈、戦乙女など)
 - v1.0.1

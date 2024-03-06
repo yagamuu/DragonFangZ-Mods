@@ -4,6 +4,7 @@ using GameLog;
 using UnityEngine;
 using System.Collections.Generic;
 using Dfz.Ui;
+using System.Linq;
 
 namespace DFZForceFangEquipMod
 {
@@ -62,6 +63,13 @@ namespace DFZForceFangEquipMod
                     continue;
                 }
                 Item targetFang = player.PlayerInfo.Fangs[nowFangIndex % 3];
+
+                // 設定した強制装備を無効化するファングだった場合は無視
+                if (checkIgnoreFangs(gameScene.Field, item))
+                {
+                    continue;
+                }
+
                 // アイテムを拾う
                 if (player.Items.Count < player.PlayerInfo.MaxItem)
                 {
@@ -128,6 +136,20 @@ namespace DFZForceFangEquipMod
             });
             ItemManagement.PutItem(field, item, player.Position, PutItemOption.None, 2, default(Game.Point));
             CharacterAction.RedrawAllStatus(field, player);
+        }
+
+        private static bool checkIgnoreFangs(Field field, Item item)
+        {
+            string displayName = item.DisplayName(field);
+            string[] ignoreFangs = Settings.ignoreEquipFangs.Value.Split(',');
+            foreach (string ignoreFang in ignoreFangs)
+            {
+                if (displayName.Contains(ignoreFang))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

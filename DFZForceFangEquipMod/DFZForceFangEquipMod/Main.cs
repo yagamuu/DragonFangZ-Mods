@@ -11,6 +11,16 @@ using Game.Specials;
 
 namespace DFZForceFangEquipMod
 {
+    public static class BuildInfo
+    {
+        public const string Name = "DragonFangZ Force Fang Equipment Mod";
+        public const string Description = null;
+        public const string Author = "yagamuu";
+        public const string Company = null;
+        public const string Version = "1.0.3";
+        public const string DownloadLink = null;
+    }
+
     public class Main : MelonMod
     {
         // public static DFZForceFangEquipMod instance;
