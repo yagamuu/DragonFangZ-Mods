@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CA3E947E-522B-48C0-BD9E-EE67879642F4}</ProjectGuid>
+    <ProjectGuid>{CFE1C0C7-4C0B-49B5-B1A1-759314B66D0C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DFZQuickRestartMod</RootNamespace>
-    <AssemblyName>DFZQuickRestartMod</AssemblyName>
+    <RootNamespace>DFZBugfixMod</RootNamespace>
+    <AssemblyName>DFZBugfixMod</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,11 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\DragonFangZ\MelonLoader\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Assembly-CSharp">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\DragonFangZ\dfz_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\DragonFangZ\dfz_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="GoogleProtocolBuffer">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\DragonFangZ\dfz_Data\Managed\GoogleProtocolBuffer.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\DragonFangZ\MelonLoader\MelonLoader.dll</HintPath>
@@ -57,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DFZQuickRestartMod.cs" />
+    <Compile Include="DFZBugfixMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
