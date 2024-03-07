@@ -17,7 +17,7 @@ namespace DFZForceFangEquipMod
         public const string Description = null;
         public const string Author = "yagamuu";
         public const string Company = null;
-        public const string Version = "1.0.3";
+        public const string Version = "1.0.4";
         public const string DownloadLink = null;
     }
 

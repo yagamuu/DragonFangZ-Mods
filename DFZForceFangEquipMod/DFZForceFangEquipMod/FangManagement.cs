@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Dfz.Ui;
 using System.Linq;
+using System.Reflection;
 
 namespace DFZForceFangEquipMod
 {
@@ -118,7 +119,23 @@ namespace DFZForceFangEquipMod
                         i--;
                     }
                 }
-                ItemEquiping.EquipFang(gameScene.Field, item, player, nowFangIndex % 3);
+                if (Settings.enableBraveReset.Value)
+                {
+                    ItemEquiping.EquipFang(gameScene.Field, item, player, nowFangIndex % 3);
+                }
+                else
+                {
+                    player.PlayerInfo.SetFang(nowFangIndex % 3, item);
+                    player.SetDirty();
+                    gameScene.Field.SendAndWait(new EquipFang
+                    {
+                        CharacterId = player.Id,
+                        ItemId = item.Id,
+                        Index = nowFangIndex % 3
+                    });
+                    gameScene.Field.ShowMessage(Marker.T("{0}は{1}を装着した！"), new object[] { player, item });
+                    gameScene.Field.ShowMessage(Marker.T("<color=#00ff00><{0}></color>の力を手に入れた！"), new object[] { item.T.DisplaySoulName });
+                }
                 nowFangIndex++;
             }
             dropFangs.Clear();
@@ -141,6 +158,10 @@ namespace DFZForceFangEquipMod
         private static bool checkIgnoreFangs(Field field, Item item)
         {
             string displayName = item.DisplayName(field);
+            if (Settings.ignoreEquipFangs.Value == "")
+            {
+                return false;
+            }
             string[] ignoreFangs = Settings.ignoreEquipFangs.Value.Split(',');
             foreach (string ignoreFang in ignoreFangs)
             {

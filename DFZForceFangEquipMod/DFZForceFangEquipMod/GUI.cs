@@ -6,7 +6,11 @@ namespace DFZForceFangEquipMod
 {
     internal class GUI
     {
-        private static string drawText = "DFZ Force Equipment Fang Mod v1.0.0";
+        private static string drawText = string.Format("{0} v{1}", new object[]
+        {
+            DFZForceFangEquipMod.BuildInfo.Name,
+            DFZForceFangEquipMod.BuildInfo.Version
+        });
 
         public static void init()
         {
