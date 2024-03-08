@@ -35,15 +35,28 @@ namespace DFZForceFangEquipMod
             {
                 return;
             }
+
+            if (Settings.enableEquipFangToRandom.Value)
+            {
+                drawText = string.Format("{0} v{1}\n次回のファング装備先:???", new object[]
+                    {
+                        DFZForceFangEquipMod.BuildInfo.Name,
+                        DFZForceFangEquipMod.BuildInfo.Version
+                    }
+                );
+                return;
+            }
+
             Character player = gameScene.Field?.Player;
-            Item nextFang = player.PlayerInfo.Fangs[FangManagement.nowFangIndex % 3];
+            int targetIndex = FangManagement.getTargetIndex(gameScene);
+            Item nextFang = player.PlayerInfo.Fangs[targetIndex];
 
             string displayFangName = nextFang == null ? "なし" : nextFang.DisplayName(gameScene.Field);
             drawText = string.Format("{0} v{1}\n次回のファング装備先:{2}({3})", new object[]
                 {
                     DFZForceFangEquipMod.BuildInfo.Name,
                     DFZForceFangEquipMod.BuildInfo.Version,
-                    FangManagement.nowFangIndex % 3 + 1,
+                    targetIndex + 1,
                     displayFangName
                 }
             );

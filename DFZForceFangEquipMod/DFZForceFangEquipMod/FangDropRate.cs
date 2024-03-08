@@ -6,7 +6,7 @@ namespace DFZForceFangEquipMod
 {
     internal class FangDropRate
     {
-        public static bool executeOnSetStatusExecutePrefix(SetStatus __instance, SpecialParam p)
+        public static bool executeOnSetStatusExecutePrefix(SetStatus __instance, Field f, SpecialParam p)
         {
             if (!__instance.T.Status.Contains(Master.CharacterStatus.Fang100))
             {
@@ -15,6 +15,7 @@ namespace DFZForceFangEquipMod
             // 薬によるファングドロップ確定化を無効化
             if (Settings.disableFang100FromItem.Value && p.FromItem != null)
             {
+                ItemUsing.RevealItem(f, p.FromItem, true, false);
                 return false;
             }
             // オブジェクトによるファングドロップ確定化を無効化

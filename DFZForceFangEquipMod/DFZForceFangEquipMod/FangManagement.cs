@@ -6,31 +6,92 @@ using System.Collections.Generic;
 using Dfz.Ui;
 using System.Linq;
 using System.Reflection;
+using Harmony;
 
 namespace DFZForceFangEquipMod
 {
     internal class FangManagement
     {
-        public static int nowFangIndex = 0;
+        private static int _nowFangIndex = 0;
         public static List<Item> dropFangs = new List<Item>();
+        private static List<int> equipFangsId = new List<int>();
+        private static List<Item> boughtFangs = new List<Item>();
 
-        public static bool executeOnDropItemPrefix(Item item)
+        public static int nowFangIndex
         {
-            if (item.IsFang)
+            get
+            {
+                return _nowFangIndex;
+            }
+        }
+        public static void updateNowFangIndex(int targetIndex)
+        {
+            if (Settings.enableEquipFangToRandom.Value)
+            {
+                _nowFangIndex = Random.Range(0, 3);
+            }
+            else if (targetIndex == _nowFangIndex)
+            {
+                _nowFangIndex++;
+            }
+
+            if (_nowFangIndex == 3)
+            {
+                _nowFangIndex = 0;
+            }
+        }
+
+        public static int getTargetIndex(GameScene gameScene)
+        {
+            int targetIndex = nowFangIndex;
+            if (Settings.enableEquipFangPriorityToEmptySlot.Value)
+            {
+                int index = 0;
+                foreach (Item fang in gameScene.Field.Player.PlayerInfo.Fangs)
+                {
+                    if (fang == null)
+                    {
+                        targetIndex = index;
+                        break;
+                    }
+                    index++;
+                };
+            }
+            return targetIndex;
+        }
+
+        public static void executeOnDropItemPostfix(Item item)
+        {
+            if (!item.IsFang)
+            {
+                return;
+            }
+
+            if (!boughtFangs.Contains(item))
             {
                 dropFangs.Add(item);
             }
-            return true;
+            if (Settings.enableEquipFangOnExplosionDamage.Value)
+            {
+                equipFang();
+            }
         }
 
         public static void executeOnDoPlayPostfix()
         {
             equipFang();
+            boughtFangs.Clear();
         }
 
         public static void executeOnDoTurnEndPostfix()
         {
             equipFang();
+        }
+
+        public static bool executeOnBuyItemPrefix(Item item)
+        {
+            boughtFangs.Add(item);
+            return true;
         }
 
         public static bool executeOnEquipFangRequestProcessPrefix(int itemId)
@@ -46,9 +107,47 @@ namespace DFZForceFangEquipMod
             return true;
         }
 
+        public static bool executeOnPatchForPutItemExecutePrefix(Field field)
+        {
+            if (!Settings.enableEquipFangOnDropBySlip.Value)
+            {
+                return true;
+            }
+            foreach (Item fang in field.Player.PlayerInfo.Fangs)
+            {
+                if (fang != null)
+                {
+                    equipFangsId.Add(fang.Id);
+                }
+            };
+
+            return true;
+        }
+
+        public static void executeOnPatchForPutItemExecutePostfix(Field field)
+        {
+            if (!Settings.enableEquipFangOnDropBySlip.Value)
+            {
+                return;
+            }
+            foreach (int fangId in equipFangsId)
+            {
+                if (!field.Map.Items.TryGetValue(fangId, out Item item))
+                {
+                    continue;
+                }
+                if (item.IsOnFloor)
+                {
+                    dropFangs.Add(item);
+                }
+            }
+            equipFangsId.Clear();
+        }
+
         public static void equipFang()
         {
-            if (dropFangs.Count <= 0)
+            bool doExecuteEquipFangToBoughtFang = (Settings.enableEquipFangOnBoughtFang.Value && boughtFangs.Count > 0);
+            if (dropFangs.Count <= 0 && !doExecuteEquipFangToBoughtFang)
             {
                 return;
             }
@@ -56,14 +155,31 @@ namespace DFZForceFangEquipMod
             GameScene gameScene = GameObject.Find("GameScene").GetComponent<GameScene>();
             Character player = gameScene.Field.Player;
 
-            foreach (Item item in dropFangs)
+            executeEquipFang(gameScene, player, dropFangs, false);
+            dropFangs.Clear();
+
+            if (doExecuteEquipFangToBoughtFang)
+            {
+                executeEquipFang(gameScene, player, boughtFangs, true);
+            }
+        }
+
+        private static void executeEquipFang(GameScene gameScene, Character player, List<Item>items, bool isBuy)
+        {
+            foreach (Item item in items)
             {
                 // 存在チェック
-                if (!gameScene.Field.Map.Items.TryGetValue(item.Id, out Item checkFang) || checkFang.OwnerCharacterId != 0)
+                if (!gameScene.Field.Map.Items.TryGetValue(item.Id, out Item checkFang))
                 {
                     continue;
                 }
-                Item targetFang = player.PlayerInfo.Fangs[nowFangIndex % 3];
+                if (!isBuy && checkFang.OwnerCharacterId != 0)
+                {
+                    continue;
+                }
+
+                int targetIndex = getTargetIndex(gameScene);
+                Item targetFang = player.PlayerInfo.Fangs[targetIndex];
 
                 // 設定した強制装備を無効化するファングだった場合は無視
                 if (checkIgnoreFangs(gameScene.Field, item))
@@ -71,8 +187,13 @@ namespace DFZForceFangEquipMod
                     continue;
                 }
 
+                // 店購入かつアイテム欄に入っているアイテムの場合そのまま装備
+                if (isBuy && item.OwnerCharacterId != 0)
+                {
+                    // なにもしない
+                }
                 // アイテムを拾う
-                if (player.Items.Count < player.PlayerInfo.MaxItem)
+                else if (player.Items.Count < player.PlayerInfo.MaxItem)
                 {
                     gameScene.Field.SendAndWait(new PickupItem
                     {
@@ -121,25 +242,25 @@ namespace DFZForceFangEquipMod
                 }
                 if (Settings.enableBraveReset.Value)
                 {
-                    ItemEquiping.EquipFang(gameScene.Field, item, player, nowFangIndex % 3);
+                    ItemEquiping.EquipFang(gameScene.Field, item, player, targetIndex);
                 }
                 else
                 {
-                    player.PlayerInfo.SetFang(nowFangIndex % 3, item);
+                    player.PlayerInfo.SetFang(targetIndex, item);
                     player.SetDirty();
                     gameScene.Field.SendAndWait(new EquipFang
                     {
                         CharacterId = player.Id,
                         ItemId = item.Id,
-                        Index = nowFangIndex % 3
+                        Index = targetIndex
                     });
                     gameScene.Field.ShowMessage(Marker.T("{0}は{1}を装着した！"), new object[] { player, item });
                     gameScene.Field.ShowMessage(Marker.T("<color=#00ff00><{0}></color>の力を手に入れた！"), new object[] { item.T.DisplaySoulName });
                 }
-                nowFangIndex++;
-            }
-            dropFangs.Clear();
+                updateNowFangIndex(targetIndex);
+            }            
         }
+
         private static void putItem(Field field, Character player, Item item)
         {
             if (!ItemEquiping.TryUnequip(field, item, player))

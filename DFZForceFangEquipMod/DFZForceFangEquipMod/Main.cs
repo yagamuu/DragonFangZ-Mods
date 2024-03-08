@@ -17,7 +17,7 @@ namespace DFZForceFangEquipMod
         public const string Description = null;
         public const string Author = "yagamuu";
         public const string Company = null;
-        public const string Version = "1.0.4";
+        public const string Version = "1.0.5";
         public const string DownloadLink = null;
     }
 
@@ -28,9 +28,9 @@ namespace DFZForceFangEquipMod
         [HarmonyPatch(typeof(ItemManagement), "DropItem")]
         public static class PatchForDropItem
         {
-            public static bool Prefix(Item item)
+            public static void Postfix(Item item)
             {
-                return FangManagement.executeOnDropItemPrefix(item);
+                FangManagement.executeOnDropItemPostfix(item);
             }
         }
 
@@ -64,9 +64,9 @@ namespace DFZForceFangEquipMod
         [HarmonyPatch(typeof(SetStatus), "Execute")]
         public static class PatchForSetStatusExecute
         {
-            public static bool Prefix(SetStatus __instance, SpecialParam p)
+            public static bool Prefix(SetStatus __instance, Field f, SpecialParam p)
             {
-                return FangDropRate.executeOnSetStatusExecutePrefix(__instance, p);
+                return FangDropRate.executeOnSetStatusExecutePrefix(__instance, f, p);
             }
         }
 
@@ -78,6 +78,30 @@ namespace DFZForceFangEquipMod
                 return FangDropRate.executeOnPatchForCharacterActionKillCharacterPrefix(opt);
             }
         }
+
+        [HarmonyPatch(typeof(PutItem), "Execute")]
+        public static class PatchForPutItemExecute
+        {
+            public static bool Prefix(Field f)
+            {
+                return FangManagement.executeOnPatchForPutItemExecutePrefix(f);
+            }
+
+            public static void Postfix(Field f)
+            {
+                FangManagement.executeOnPatchForPutItemExecutePostfix(f);
+            }
+        }
+
+        [HarmonyPatch(typeof(ShopManagement), "BuyItem")]
+        public static class PatchForShopManagement
+        {
+            public static bool Prefix(Item item)
+            {
+                return FangManagement.executeOnBuyItemPrefix(item);
+            }
+        }
+
 
         public override void OnInitializeMelon()
         {
