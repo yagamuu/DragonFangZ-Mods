@@ -24,8 +24,8 @@ namespace DFZForceFangEquipMod
         private static void DrawMenu()
         {
             GUIStyle style = UnityEngine.GUI.skin.box;
-            style.alignment = TextAnchor.UpperLeft;
-            UnityEngine.GUI.Box(new Rect(10, Screen.height - 80, 300, 40), drawText, style);
+            style.alignment = TextAnchor.UpperRight;
+            UnityEngine.GUI.Box(new Rect(Screen.width - 310, Screen.height - 80, 300, 40), drawText, style);
         }
 
         private static void updateDrawText()

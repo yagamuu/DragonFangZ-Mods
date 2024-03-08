@@ -19,7 +19,12 @@ namespace DFZForceFangEquipMod
                 return false;
             }
             // オブジェクトによるファングドロップ確定化を無効化
-            if (Settings.disableFang100FromObj.Value && p.Executer.IsObj)
+            else if (Settings.disableFang100FromObj.Value && p.Executer.IsObj)
+            {
+                return false;
+            }
+            // 竜石によるファングドロップ確定化を無効化
+            else if (Settings.disableFang100FromStone.Value)
             {
                 return false;
             }

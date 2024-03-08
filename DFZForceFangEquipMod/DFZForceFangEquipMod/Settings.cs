@@ -14,6 +14,7 @@ namespace DFZForceFangEquipMod
         public static MelonPreferences_Entry<bool> enableEquipFangToRandom;
         public static MelonPreferences_Entry<bool> disableFang100FromItem;
         public static MelonPreferences_Entry<bool> disableFang100FromObj;
+        public static MelonPreferences_Entry<bool> disableFang100FromStone;
         public static MelonPreferences_Entry<bool> disableFangDropRate;
         public static MelonPreferences_Entry<string> ignoreEquipFangs;
 
@@ -29,6 +30,7 @@ namespace DFZForceFangEquipMod
             enableEquipFangToRandom = settingsCategory.CreateEntry<bool>("enableEquipFangToRandom", false, null, "強制装備を行なうファング枠をランダムにする(false:しない、true:する)");
             disableFang100FromItem = settingsCategory.CreateEntry<bool>("disableFang100FromItem", true, null, "薬によるファングドロップ確定化を無効化する(false:しない、true:する)");
             disableFang100FromObj = settingsCategory.CreateEntry<bool>("disableFang100FromObj", false, null, "オブジェクトによるファングドロップ確定化を無効化する(false:しない、true:する)");
+            disableFang100FromStone = settingsCategory.CreateEntry<bool>("disableFang100FromStone", true, null, "竜石によるファングドロップ確定化を無効化する(false:しない、true:する)");
             disableFangDropRate = settingsCategory.CreateEntry<bool>("disableFangDropRate", false, null, "特定攻撃(戦乙女サクリなど)によるファングドロップ率増加を無効化する(false:しない、true:する)");
             ignoreEquipFangs = settingsCategory.CreateEntry<string>("ignoreEquipFangs", "", null, "強制装備を無効化するファングを指定(複数指定する場合は\",\"で区切ってください)");
         }
