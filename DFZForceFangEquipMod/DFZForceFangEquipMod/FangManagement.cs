@@ -90,6 +90,10 @@ namespace DFZForceFangEquipMod
 
         public static bool executeOnBuyItemPrefix(Item item)
         {
+            if (!item.IsFang)
+            {
+                return true;
+            }
             boughtFangs.Add(item);
             return true;
         }
