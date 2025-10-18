@@ -90,3 +90,9 @@
       - アイテム、ファング効果の大幅変更を実施
 
 </details>
+
+## クレジット
+- [yagamuu](https://x.com/yagamuu)(本Modの開発全般、テストプレイ担当)
+- [Usk](https://x.com/Usk_peca)(本Modのバランス調整、テストプレイ担当)
+- [ベア](https://x.com/bearfaust0123)(テストプレイ担当)
+- [ポンズ](https://x.com/ponzu24)(テストプレイ担当)
