@@ -63,7 +63,7 @@
 </details>
 
 ## 本Modファイルの場所
-- [`DFZBalancingMod.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ-Mods/DFZBalancingMod/DFZBalancingMod.dll)
+- [`DFZBalancingMod.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZBalancingMod/DFZBalancingMod.dll)
 
 ## 導入方法
 - [このページを参考にしてください。](https://yagamuu.notion.site/Z-1-0fa1a08e1f5d484280002327faf847e3?pvs=74)

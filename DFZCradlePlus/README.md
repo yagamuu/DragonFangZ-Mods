@@ -30,7 +30,7 @@
 </details>
 
 ## 本Modファイルの場所
-- [`DFZCradlePlus.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ-Mods/DFZCradlePlus/DFZCradlePlus.dll)
+- [`DFZCradlePlus.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZCradlePlus/DFZCradlePlus.dll)
 
 ## 導入方法
 1. [このページを参考にしてください。](https://yagamuu.notion.site/Z-1-0fa1a08e1f5d484280002327faf847e3?pvs=74)
