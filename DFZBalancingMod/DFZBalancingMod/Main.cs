@@ -14,12 +14,13 @@ namespace DFZBalancingMod
         public const string Description = null;
         public const string Author = "yagamuu";
         public const string Company = null;
-        public const string Version = "1.0.0";
+        public const string Version = "1.0.1";
         public const string DownloadLink = null;
     }
 
     public class Main : MelonMod
     {
+        /*
         // EXPデータの差し替え
         [HarmonyPatch(typeof(G), "loadExpOfLevel")]
         public static class PatchExpOfLevel
@@ -55,6 +56,7 @@ namespace DFZBalancingMod
                 ExpOfLevelById_.SetValue(null, newExpOfLevels);
             }
         }
+        */
 
         /*
         // スキルデータの差し替え

@@ -1,13 +1,16 @@
 ﻿using Game;
+using Game.FieldAction;
+using Game.MapGenerator;
+using GameLog;
 using HarmonyLib;
+using Master;
 using MelonLoader;
 using System;
-using Master;
 using System.Collections.Generic;
-using System.Reflection;
-using Game.FieldAction;
-using UnityEngine;
 using System.Linq;
+using System.Reflection;
+using UnityEngine;
+using static Game.FieldLoaders.Util;
 
 namespace DFZCradlePlus
 {
@@ -17,7 +20,7 @@ namespace DFZCradlePlus
         public const string Description = null;
         public const string Author = "yagamuu";
         public const string Company = null;
-        public const string Version = "1.0.0";
+        public const string Version = "1.1.0";
         public const string DownloadLink = null;
     }
 
@@ -284,6 +287,21 @@ namespace DFZCradlePlus
                     {
                         character.RemoveStatus(CharacterStatus.Snooze);
                     }
+                    // 死神の仮眠を解除
+                    if (character.CharacterTemplateId == 111 && character.IsStatusActive(CharacterStatus.Snooze))
+                    {
+                        character.RemoveStatus(CharacterStatus.Snooze);
+                    }
+                    // アルテミスの仮眠を解除
+                    if (character.CharacterTemplateId == 907 && character.IsStatusActive(CharacterStatus.Snooze))
+                    {
+                        character.RemoveStatus(CharacterStatus.Snooze);
+                    }
+                    // アポロンの仮眠を解除
+                    if (character.CharacterTemplateId == 908 && character.IsStatusActive(CharacterStatus.Snooze))
+                    {
+                        character.RemoveStatus(CharacterStatus.Snooze);
+                    }
                 }
                 gameScene.RedrawAll();
             }
@@ -293,7 +311,7 @@ namespace DFZCradlePlus
         [HarmonyPatch(typeof(Game.FieldLoaders.Util), "PutCharacter")]
         public static class PatchFixPutCharacter
         {
-            public static bool Prefix(Field f, int enemyId, ref Point pos, Direction dir, RandomBase rand, bool isPlayer)
+            public static bool Prefix(Field f, int enemyId, ref Game.Point pos, Direction dir, RandomBase rand, bool isPlayer)
             {
                 if (f.FieldInfo.DungeonId != 11)
                 {
@@ -339,6 +357,38 @@ namespace DFZCradlePlus
                 }
 
                 return true;
+            }
+        }
+
+        // 28F~29Fにアルテミスアポロンを追加
+        [HarmonyPatch(typeof(Game.FieldLoaders.MetaMapStageLoader), "InitField")]
+        public static class PatchFixInitField
+        {
+            public static void Postfix()
+            {
+                GameScene gameScene = GameObject.Find("GameScene").GetComponent<GameScene>();
+                Field field = gameScene.Field;
+
+                if (field.FieldInfo.DungeonId != 11 || field.FieldInfo.FloorNum < 28 || field.FieldInfo.FloorNum > 29)
+                {
+                    return;
+                }
+
+                // アルテミスを設置
+                int seed = field.RandRange(0, 9999999, Marker.Rand("DFZCradlePlus:addAltemisAndApollon"));
+                RandomXS randomXS = new RandomXS(seed, 0);
+
+                int num2 = randomXS.RangeInt(0, 8);
+                Game.Point point = Game.FieldLoaders.Util.FindRandomPos(field.Map, randomXS, MoveType.Walk, default);
+                Character character = Game.FieldLoaders.Util.PutCharacter(field, 907, point, Direction.North.Rotate(num2), randomXS, false);
+
+                // アポロンを設置
+                seed = field.RandRange(0, 9999999, Marker.Rand("DFZCradlePlus:addAltemisAndApollon"));
+                randomXS = new RandomXS(seed, 0);
+
+                num2 = randomXS.RangeInt(0, 8);
+                point = Game.FieldLoaders.Util.FindRandomPos(field.Map, randomXS, MoveType.Walk, default);
+                character = Game.FieldLoaders.Util.PutCharacter(field, 908, point, Direction.North.Rotate(num2), randomXS, false);
             }
         }
 
