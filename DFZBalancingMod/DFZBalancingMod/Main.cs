@@ -14,7 +14,7 @@ namespace DFZBalancingMod
         public const string Description = null;
         public const string Author = "yagamuu";
         public const string Company = null;
-        public const string Version = "1.0.1";
+        public const string Version = "1.0.2";
         public const string DownloadLink = null;
     }
 

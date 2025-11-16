@@ -65,13 +65,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="pb\fix_ItemTemplate.pb" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="pb\fix_ExpOfLevel.pb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="pb\fix_CharacterTemplate.pb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="pb\fix_ItemTemplate.pb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

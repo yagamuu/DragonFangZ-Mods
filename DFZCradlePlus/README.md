@@ -31,6 +31,9 @@
 
 ## 本Modファイルの場所
 - [`DFZCradlePlus.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZCradlePlus/DFZCradlePlus.dll)
+### 旧バージョン
+- [`DFZCradlePlus_v1.1.0.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZCradlePlus/old/DFZCradlePlus_v1.1.0.dll)
+- [`DFZCradlePlus_v1.0.0.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZCradlePlus/old/DFZCradlePlus_v1.0.0.dll)
 
 ## 導入方法
 1. [このページを参考にしてください。](https://yagamuu.notion.site/Z-1-0fa1a08e1f5d484280002327faf847e3?pvs=74)
@@ -39,6 +42,8 @@
 <details>
   <summary>ネタバレ防止</summary>
 
+  - v1.1.1
+    - モンスター出現テーブルの調整
   - v1.1.0
     - モンスター出現テーブルの調整
   - v1.0.1

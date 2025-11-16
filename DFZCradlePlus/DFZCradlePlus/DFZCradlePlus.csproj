@@ -94,7 +94,7 @@
     <EmbeddedResource Include="pb\Dungeon11_fix_ItemSet.pb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="pb\Dungeon11_v1.0.2_Tenant_fix.pb" />
+    <EmbeddedResource Include="pb\Dungeon11_v1.1.1_Tenant_fix.pb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

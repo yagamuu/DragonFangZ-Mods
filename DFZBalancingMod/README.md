@@ -16,8 +16,11 @@
     - 超・武器職人の書：効果を+3→5に変更
     - 超・盾職人の書：効果を+3→5に変更
     - エルフの弓：ベース攻撃力を1→4に変更
+    - いばらの鞭：ベース攻撃力を6→5に変更
+    - 雷のハンマー：ベース攻撃力を6→5に変更
     - 魔法の盾：ベース防御力を1→2に変更
     - 乙女の盾：ベース防御力を2→3に変更、状態異常回避効果を常時発動化+発動率を変更(50%→30%)
+    - 竜の盾：ベース防御力を4→3に変更、炎攻撃の軽減量を変更(50%→30%)
     - みけエル系ファング：サクリ効果を変更(旧：千里眼効果)
       - みけエル：剛力、強靭、倍速からランダム1種10ターン付与
       - にゃんダルフォン：剛力、強靭を10ターン付与
@@ -62,6 +65,9 @@
 
 ## 本Modファイルの場所
 - [`DFZBalancingMod.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZBalancingMod/DFZBalancingMod.dll)
+### 旧バージョン
+- [`DFZBalancingMod_v1.0.1.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZBalancingMod/old/DFZBalancingMod_v1.0.1.dll)
+- [`DFZBalancingMod_v1.0.0.dll`](https://raw.githubusercontent.com/yagamuu/DragonFangZ-Mods/refs/heads/master/DFZBalancingMod/old/DFZBalancingMod_v1.0.0.dll)
 
 ## 導入方法
 - [このページを参考にしてください。](https://yagamuu.notion.site/Z-1-0fa1a08e1f5d484280002327faf847e3?pvs=74)
@@ -70,6 +76,9 @@
 <details>
   <summary>ネタバレ防止</summary>
 
+  - v1.0.2
+    - 雷のハンマー、いばらの鞭の攻撃力を調整
+    - 竜の盾の防御力を調整、炎軽減割合を調整
   - v1.0.1
     - 経験値テーブルの変更を差し戻し
   - v1.0.0
