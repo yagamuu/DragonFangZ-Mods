@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using MelonLoader;
 using DFZEnabledStateSerializerMod; // The namespace of your mod class
 // ...
-[assembly: MelonInfo(typeof(DFZEnabledStateSerializerMod.DFZEnabledStateSerializerMod), "DragonFangZ Enabled State Serializer Mod", "1.0.0", "yagamuu")]
+[assembly: MelonInfo(typeof(DFZEnabledStateSerializerMod.Main), DFZEnabledStateSerializerMod.BuildInfo.Name, DFZEnabledStateSerializerMod.BuildInfo.Version, DFZEnabledStateSerializerMod.BuildInfo.Author)]
 [assembly: MelonGame("Toydea", "DragonFangZ")]
 
 // アセンブリに関する一般情報は以下を通して制御されます
@@ -15,7 +15,7 @@ using DFZEnabledStateSerializerMod; // The namespace of your mod class
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DFZEnabledStateSerializerMod")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright ©  2026")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
