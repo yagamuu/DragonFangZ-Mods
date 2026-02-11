@@ -10,4 +10,4 @@
 
 4. 一番下の`INSTALL`ボタンを押す
 
-5. ゲームフォルダ内のModsフォルダに[`DFZMochiInferno.dll`](https://github.com/yagamuu/speedrun/blob/master/DragonFangZ/Mod/DFZMochiInferno/DFZMochiInferno.dll)を入れる
+5. ゲームフォルダ内のModsフォルダに[`DFZMochiInferno.dll`](https://github.com/yagamuu/DragonFangZ-Mods/blob/master/DFZMochiInferno/DFZMochiInferno.dll)を入れる
